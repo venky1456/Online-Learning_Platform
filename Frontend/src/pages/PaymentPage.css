@@ -1,0 +1,151 @@
+/* General styles for the page */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+/* Styles for the main container */
+main {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 600px;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode main {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+/* Styles for the main heading */
+main h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #333;
+    transition: color 0.3s;
+}
+
+body.dark-mode main h1 {
+    color: #e0e0e0;
+}
+
+/* Styles for the error message */
+.error {
+    color: #d32f2f;
+    font-size: 16px;
+    margin-bottom: 20px;
+    background-color: #f8d7da;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode .error {
+    color: #dc3545;
+    background-color: #f5c6cb;
+}
+
+/* Styles for the loading message */
+.loading {
+    font-size: 16px;
+    color: #00796b;
+}
+
+body.dark-mode .loading {
+    color: #80cbc4;
+}
+
+/* Additional styling for Footer component */
+footer {
+    padding: 20px;
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode footer {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    main {
+        padding: 30px 10px;
+    }
+
+    main h1 {
+        font-size: 28px;
+    }
+}
+
+/* Dark mode toggle button */
+.toggle-dark-mode {
+    background: linear-gradient(to right, #4a90e2, #50e3c2);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background 0.4s ease;
+}
+
+body.dark-mode .toggle-dark-mode {
+    background: linear-gradient(to right, #6c757d, #343a40);
+}
+
+/* Pay button styling for light mode */
+/* Pay button styling for light mode */
+.pay-button {
+    background: linear-gradient(to right, #4a90e2, #50e3c2);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.4s ease, transform 0.2s ease;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+    display: block;
+    width: fit-content;
+  }
+  
+  .pay-button:hover {
+    background: linear-gradient(to left, #4a90e2, #50e3c2);
+    transform: scale(1.05);
+  }
+  
+  /* Pay button styling for dark mode */
+  body.dark-mode .pay-button {
+    background: linear-gradient(to right, #6c757d, #343a40);
+    color: #e0e0e0;
+  }
+  
+  body.dark-mode .pay-button:hover {
+    background: linear-gradient(to left, #6c757d, #343a40);
+    transform: scale(1.05);
+  }
+  
+  

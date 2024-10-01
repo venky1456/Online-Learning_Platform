@@ -1,0 +1,146 @@
+  /* General styling for the courses container */
+  .courses-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, color 0.3s;
+    overflow-y: auto; /* Scroll if content overflows */
+  }
+
+  /* Dark mode styles */
+  body.dark-mode .courses-container {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+
+  /* Header styling */
+  .courses-container h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #343a40;
+    text-align: center;
+  }
+
+  body.dark-mode .courses-container h1 {
+    color: #e0e0e0;
+  }
+
+  /* Course card styling */
+  .course-card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+
+  body.dark-mode .course-card {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+  }
+
+  .course-card h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #495057;
+  }
+
+  body.dark-mode .course-card h2 {
+    color: #e0e0e0;
+  }
+
+  .course-card p {
+    font-size: 16px;
+    color: #6c757d;
+  }
+
+  body.dark-mode .course-card p {
+    color: #e0e0e0;
+  }
+
+  /* Button styling */
+  .free-button,
+  .price-button,
+  .add-to-cart-button,
+  .buy-now-button {
+    background: linear-gradient(to right, #4a90e2, #50e3c2);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.4s ease, transform 0.2s ease;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+    display: block;
+    width: fit-content;
+  }
+
+  body.dark-mode .free-button,
+  body.dark-mode .price-button,
+  body.dark-mode .add-to-cart-button,
+  body.dark-mode .buy-now-button {
+    background: linear-gradient(to right, #6c757d, #343a40);
+  }
+
+  .free-button:hover,
+  .price-button:hover,
+  .add-to-cart-button:hover,
+  .buy-now-button:hover {
+    background: linear-gradient(to left, #4a90e2, #50e3c2);
+    color: white;
+    transform: scale(1.05);
+  }
+
+  body.dark-mode .free-button:hover,
+  body.dark-mode .price-button:hover,
+  body.dark-mode .add-to-cart-button:hover,
+  body.dark-mode .buy-now-button:hover {
+    background: linear-gradient(to left, #6c757d, #343a40);
+  }
+
+  /* Error message styling */
+  .error {
+    color: #dc3545;
+    background-color: #f8d7da;
+    padding: 12px;    
+    border-radius: 8px;
+    margin-top: 15px;
+    text-align: center;
+  }
+
+  body.dark-mode .error {
+    color: #dc3545;
+    background-color: #f5c6cb;
+  }
+
+  /* Dark mode toggle button */
+  .toggle-dark-mode {
+    background: linear-gradient(to right, #4a90e2, #50e3c2);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+
+  body.dark-mode .toggle-dark-mode {
+    background: linear-gradient(to right, #6c757d, #343a40);
+  }
+
+  /* Button container styling */
+  .button-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }

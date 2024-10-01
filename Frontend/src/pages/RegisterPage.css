@@ -1,0 +1,59 @@
+/* Center the register container */
+.register-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 2rem;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: #fff;
+    text-align: center;
+  
+    /* Flexbox for vertical and horizontal centering */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /* Header styling */
+  .register-container h1 {
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  /* Input fields styling */
+  .register-container input,
+  .register-container select {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  /* Button styling */
+  .register-container button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #FFC107;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  /* Button hover effect */
+  .register-container button:hover {
+    background-color: #FFA000;
+  }
+  
+  /* Error message styling */
+  .register-container p {
+    color: red;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  

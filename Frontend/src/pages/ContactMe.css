@@ -1,0 +1,130 @@
+/* src/components/ContactMe.css */
+
+/* Root Variables for Light and Dark Modes */
+:root {
+  --background-color: #f4f4f4;
+  --content-background: #ffffff;
+  --text-color: #333333;
+  --subtext-color: #666666;
+  --accent-color: #6a1b9a;
+  --hover-color: #0073e6;
+  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+  --background-color: #121212;
+  --content-background: #1e1e1e;
+  --text-color: #e0e0e0;
+  --subtext-color: #aaaaaa;
+  --accent-color: #bb86fc;
+  --hover-color: #3700b3;
+  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Contact Section Styling */
+.contact {
+  background-color: var(--background-color);
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 80px); /* Adjust height considering header and footer */
+}
+
+/* Contact Content Container */
+.contact-content {
+  background-color: var(--content-background);
+  color: var(--text-color);
+  padding: 60px 40px;
+  border-radius: 8px;
+  box-shadow: var(--box-shadow);
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Contact Heading */
+.contact-content h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+/* Contact Information Paragraphs */
+.contact-content .mail,
+.contact-content .links {
+  font-size: 18px;
+  margin: 10px 0;
+  color: var(--subtext-color);
+}
+
+/* Icons within Text */
+.contact-content .mail i,
+.contact-content .links i {
+  margin-right: 10px;
+  color: var(--accent-color);
+  font-size: 20px;
+  vertical-align: middle;
+}
+
+/* Social Links */
+.contact-content a {
+  display: inline-flex;
+  align-items: center;
+  margin: 10px 15px;
+  color: var(--accent-color);
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s, transform 0.3s;
+}
+
+/* Social Icons */
+.contact-content a i {
+  margin-right: 8px;
+  font-size: 24px;
+}
+
+/* Hover Effects for Links */
+.contact-content a:hover {
+  color: var(--hover-color);
+  transform: translateY(-3px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .contact-content {
+    padding: 40px 20px;
+  }
+
+  .contact-content h2 {
+    font-size: 28px;
+  }
+
+  .contact-content .mail,
+  .contact-content .links,
+  .contact-content a {
+    font-size: 16px;
+  }
+
+  .contact-content a i {
+    font-size: 20px;
+  }
+}
+
+/* Dark mode toggle button */
+.toggle-dark-mode {
+  background: linear-gradient(to right, #4a90e2, #50e3c2);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 20px;
+}
+
+/* Dark mode toggle button styles in dark mode */
+body.dark-mode .toggle-dark-mode {
+  background: linear-gradient(to right, #6c757d, #343a40);
+}

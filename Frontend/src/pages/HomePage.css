@@ -1,0 +1,101 @@
+/* src/pages/HomePage.css */
+
+/* General styling for the homepage container */
+.homepage-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100vw;
+  margin: 0;
+}
+
+/* Main section styling */
+.homepage-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  text-align: center;
+  background-color: #f8f9fa;
+  width: 100%;
+}
+
+/* Dark mode styles */
+body.dark-mode .homepage-main {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+/* Styling for the main heading */
+.homepage-main h1 {
+  font-size: 4rem; /* Adjusted for better full-width display */
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Dark mode heading styling */
+body.dark-mode .homepage-main h1 {
+  color: #e0e0e0;
+}
+
+/* Styling for the introductory paragraph */
+.homepage-main p {
+  font-size: 1.5rem; /* Adjusted for better full-width display */
+  margin-bottom: 40px;
+  color: #666;
+}
+
+/* Dark mode paragraph styling */
+body.dark-mode .homepage-main p {
+  color: #e0e0e0;
+}
+
+/* Footer styling */
+footer {
+  padding: 20px;
+  text-align: center;
+  background-color: #343a40;
+  color: #fff;
+  width: 100%;
+  margin-top: auto; /* Pushes footer to the bottom of the page */
+}
+
+/* Dark mode footer styling */
+body.dark-mode footer {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+  .homepage-main {
+    padding: 20px;
+  }
+
+  .homepage-main h1 {
+    font-size: 2.5rem; /* Adjusted for smaller screens */
+  }
+
+  .homepage-main p {
+    font-size: 1rem; /* Adjusted for smaller screens */
+  }
+}
+
+/* Dark mode toggle button */
+.toggle-dark-mode {
+  background: linear-gradient(to right, #4a90e2, #50e3c2);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+/* Dark mode toggle button styles in dark mode */
+body.dark-mode .toggle-dark-mode {
+  background: linear-gradient(to right, #6c757d, #343a40);
+}

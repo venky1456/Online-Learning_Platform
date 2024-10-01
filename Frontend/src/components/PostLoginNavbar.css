@@ -1,0 +1,89 @@
+/* General Reset */
+body, h1, h2, h3, p, ul, li, a, button {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  nav.post-login-navbar {
+    display: flex; /* Flexbox for horizontal layout */
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Space between logo and menu items */
+    background-color: #808080; /* Background color for the navbar */
+    padding: 10px 30px; /* Padding for navbar */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+  
+  nav.post-login-navbar .logo {
+    font-size: 24px; /* Font size for logo */
+    color: #fff; /* White color for text */
+    font-weight: bold; /* Bold text */
+  }
+  
+  nav.post-login-navbar .menu-items {
+    display: flex; /* Horizontal layout for menu items */
+    align-items: center; /* Center items vertically */
+    gap: 20px; /* Space between menu items */
+  }
+  
+  nav.post-login-navbar .menu-items li {
+    list-style: none; /* Remove list style */
+  }
+  
+  nav.post-login-navbar .menu-items a {
+    color: #fff; /* White text color */
+    font-size: 16px; /* Font size for links */
+    transition: color 0.3s; /* Smooth transition for hover */
+  }
+  
+  nav.post-login-navbar .menu-items a:hover {
+    color: #dcdcdc; /* Light grey color on hover */
+  }
+  
+  nav.post-login-navbar .menu-items button {
+    background: none; /* Remove default button styling */
+    border: none; /* Remove button border */
+    color: #fff; /* White text color */
+    font-size: 16px; /* Font size for button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: color 0.3s; /* Smooth transition for hover */
+  }
+  
+  nav.post-login-navbar .menu-items button:hover {
+    color: #dcdcdc; /* Light grey color on hover */
+  }
+  
+  nav.post-login-navbar .menu-items .profile-dropdown {
+    position: relative; /* Position relative for dropdown */
+  }
+  
+  nav.post-login-navbar .menu-items .profile-dropdown-content {
+    display: none; /* Hidden by default */
+    position: absolute; /* Position relative to the parent */
+    top: 100%; /* Below the parent */
+    right: 0; /* Align to the right */
+    background-color: #fff; /* White background for dropdown */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for dropdown */
+    border-radius: 4px; /* Rounded corners */
+    z-index: 1000; /* Ensure it's on top */
+    min-width: 150px; /* Minimum width for dropdown */
+  }
+  
+  nav.post-login-navbar .menu-items .profile-dropdown-content a {
+    display: block; /* Block display for links */
+    padding: 10px 15px; /* Padding for links */
+    color: #333; /* Dark text color */
+    text-align: left; /* Left-align text */
+    transition: background-color 0.3s; /* Smooth transition for hover */
+  }
+  
+  nav.post-login-navbar .menu-items .profile-dropdown-content a:hover {
+    background-color: #f3f4f7; /* Light grey background on hover */
+  }
+  
+  nav.post-login-navbar .menu-items .profile-dropdown:hover .profile-dropdown-content {
+    display: block; /* Show dropdown on hover */
+  }
+  

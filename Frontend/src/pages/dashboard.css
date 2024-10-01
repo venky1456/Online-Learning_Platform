@@ -1,0 +1,176 @@
+/* src/pages/dashboard.css */
+
+/* General styling for the dashboard container */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  background-color: #e9ecef;
+  border-radius: 15px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  overflow-y: auto; /* Scroll if content overflows */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dark mode styles */
+body.dark-mode .dashboard-container {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-mode .dashboard-container nav {
+  background-color: #1e1e1e;
+}
+
+body.dark-mode .dashboard-container main {
+  background-color: #1e1e1e;
+}
+
+/* Header styling */
+.dashboard-container h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #343a40;
+  text-align: center;
+}
+
+body.dark-mode .dashboard-container h1 {
+  color: #e0e0e0;
+}
+
+/* Navigation styling */
+.dashboard-container nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: #ffffff;
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+body.dark-mode .dashboard-container nav {
+  background-color: #1e1e1e;
+}
+
+.dashboard-container nav a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 18px;
+  margin: 0 15px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+body.dark-mode .dashboard-container nav a {
+  color: #4a90e2;
+}
+
+body.dark-mode .dashboard-container nav a:hover {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+/* Main content area styling */
+.dashboard-container main {
+  flex: 1; /* Takes remaining space */
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .dashboard-container main {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+
+.dashboard-container main h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #495057;
+}
+
+body.dark-mode .dashboard-container main h2 {
+  color: #e0e0e0;
+}
+
+.dashboard-container main p {
+  font-size: 16px;
+  color: #6c757d;
+}
+
+body.dark-mode .dashboard-container main p {
+  color: #e0e0e0;
+}
+
+/* Admin buttons grid */
+.admin-buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+/* Gradient button styling */
+.gradient-button {
+  background: linear-gradient(to right, #4a90e2, #50e3c2);
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 12px;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.4s ease, transform 0.2s ease;
+  font-size: 16px;
+}
+
+body.dark-mode .gradient-button {
+  background: linear-gradient(to right, #6c757d, #343a40);
+}
+
+.gradient-button:hover {
+  background: linear-gradient(to left, #4a90e2, #50e3c2);
+  color: white;
+  transform: scale(1.05);
+}
+
+body.dark-mode .gradient-button:hover {
+  background: linear-gradient(to left, #6c757d, #343a40);
+}
+
+/* Error message styling */
+.error {
+  color: #dc3545;
+  background-color: #f8d7da;
+  padding: 12px;    
+  border-radius: 8px;
+  margin-top: 15px;
+  text-align: center;
+}
+
+body.dark-mode .error {
+  color: #dc3545;
+  background-color: #f5c6cb;
+}
+
+/* Dark mode toggle button */
+.toggle-dark-mode {
+  background: linear-gradient(to right, #4a90e2, #50e3c2);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+body.dark-mode .toggle-dark-mode {
+  background: linear-gradient(to right, #6c757d, #343a40);
+}

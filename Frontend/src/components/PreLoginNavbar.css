@@ -1,0 +1,45 @@
+/* General Reset */
+body, h1, h2, h3, p, ul, li, a, button {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Navbar Container */
+  nav {
+    display: flex; /* Flexbox for horizontal layout */
+    justify-content: space-between; /* Space between logo and menu items */
+    align-items: center; /* Center items vertically */
+    background-color: #2979ff; /* Background color for the navbar */
+    padding: 10px 30px; /* Padding for navbar */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+  
+  /* Logo Styling */
+  nav .logo {
+    font-size: 24px; /* Font size for logo */
+    color: #fff; /* White color for text */
+    font-weight: bold; /* Bold text */
+  }
+  
+  /* Menu Items Styling */
+  nav ul {
+    display: flex; /* Horizontal layout for menu items */
+    align-items: center; /* Center items vertically */
+    gap: 20px; /* Space between menu items */
+  }
+  
+  /* Menu Links Styling */
+  nav ul li a {
+    color: #fff; /* White text color */
+    font-size: 16px; /* Font size for links */
+    transition: color 0.3s; /* Smooth transition for hover */
+  }
+  
+  /* Hover Effect for Links */
+  nav ul li a:hover {
+    color: #dcdcdc; /* Light grey color on hover */
+  }
+  
