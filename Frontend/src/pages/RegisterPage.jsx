@@ -21,36 +21,37 @@ const RegisterPage = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-
+  
     // Reset error
     setError(null);
-
+  
     // Simple validation
     const mobilePattern = /^[6-9]\d{9}$/;
     const emailPattern = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-
+  
     if (!emailPattern.test(email)) {
       setError('Please enter a valid email address.');
       return;
     }
-
+  
     if (!mobilePattern.test(mobile)) {
       setError('Please enter a valid mobile number.');
       return;
     }
-
+  
     if (password !== confirmPassword) {
       setError('Passwords do not match.');
       return;
     }
-
+  
     setLoading(true);
-    
+  
     try {
       await axios.post(`${API_URL}/auth/register`, { name, email, password, mobile, role });
       navigate('/login');
     } catch (error) {
       console.error('Registration error:', error);
+      // Display the error message from the backend
       setError(error.response?.data?.msg || 'Registration failed.');
     } finally {
       setLoading(false);

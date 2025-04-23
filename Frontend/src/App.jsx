@@ -1,79 +1,149 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import ContactUsPage from './pages/ContactUsPage';
-import CoursesPage from './pages/CoursesPage';
-import DashboardPage from './pages/DashboardPage';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import PaymentPage from './pages/PaymentPage';
-import SelectedCoursesPage from './pages/SelectedCoursesPage';
-import PreLoginNavbar from './components/PreLoginNavbar';
-import PostLoginNavbar from './components/PostLoginNavbar';
-import EnrolledCoursesPage from './pages/EnrolledCoursesPage';
-import UserDetailsPage from './pages/UserDetailsPage';
-import AddCoursePage from './pages/AddCoursePage';
-import UpdateCoursePage from './pages/UpdateCoursePage';
-import InstructorPage from './pages/InstructorPage';
-import InstructorDashboard from './components/InstructorDashboard';
-import MyCoursesPage from './pages/MyCoursesPage';
-import ApproveOrDisapproveInstructors from './pages/ApproveOrDisapproveInstructors';
-import EditUser from './components/EditUser';
-import DeleteUsersPage from './pages/DeleteUsersPage';
-import ViewAllUsersPage from './pages/ViewAllUsersPage';
-import PaymentHistory from './components/PaymentHistory';
-import EditInstructor from './components/EditInstructor';
-import AllInstructorsPage from './pages/AllInstructorsPage';
-import ProfilePage from './components/ProfilePage';  // Import the ProfilePage component
+import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import PropTypes from "prop-types"; // Import for prop types validation
+import HomePage from "./pages/HomePage";
+import ContactUsPage from "./pages/ContactUsPage";
+import CoursesPage from "./pages/CoursesPage";
+import DashboardPage from "./pages/DashboardPage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import PaymentPage from "./pages/PaymentPage";
+import SelectedCoursesPage from "./pages/SelectedCoursesPage";
+import PreLoginNavbar from "./components/PreLoginNavbar";
+import PostLoginNavbar from "./components/PostLoginNavbar";
+import EnrolledCoursesPage from "./pages/EnrolledCoursesPage";
+import UserDetailsPage from "./pages/UserDetailsPage";
+import AddCoursePage from "./pages/AddCoursePage";
+import UpdateCoursePage from "./pages/UpdateCoursePage";
+import InstructorPage from "./pages/InstructorPage";
+import InstructorDashboard from "./components/InstructorDashboard";
+import MyCoursesPage from "./pages/MyCoursesPage";
+import ApproveOrDisapproveInstructors from "./pages/ApproveOrDisapproveInstructors";
+import EditUser from "./components/EditUser";
+import DeleteUsersPage from "./pages/DeleteUsersPage";
+import ViewAllUsersPage from "./pages/ViewAllUsersPage";
+import PaymentHistory from "./components/PaymentHistory";
+import EditInstructor from "./components/EditInstructor";
+import AllInstructorsPage from "./pages/AllInstructorsPage";
+import ProfilePage from "./components/ProfilePage";
 
 function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem('user'));
+    const storedUser = JSON.parse(localStorage.getItem("user"));
     setUser(storedUser);
   }, []);
 
+  const ProtectedRoute = ({ element, roles }) => {
+    if (!user) return <Navigate to="/login" />;
+    if (roles && !roles.includes(user.role)) return <Navigate to="/register" />;
+    return element;
+  };
+
+  // Add prop types validation for ProtectedRoute
+  ProtectedRoute.propTypes = {
+    element: PropTypes.node.isRequired,
+    roles: PropTypes.arrayOf(PropTypes.string),
+  };
+
   return (
     <Router>
-      {user ? <PostLoginNavbar user={user} /> : <PreLoginNavbar />} {/* ProfileDropdown is already inside PostLoginNavbar */}
+      {user ? <PostLoginNavbar user={user} /> : <PreLoginNavbar />}
       <Routes>
-        {/* General Routes */}
+        {/* Public Routes */}
         <Route path="/" element={<HomePage />} />
         <Route path="/contact-us" element={<ContactUsPage />} />
         <Route path="/courses" element={<CoursesPage />} />
-        <Route path="/dashboard" element={<DashboardPage user={user} />} />
-        <Route path="/login" element={<LoginPage setUser={setUser} />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/payment/:courseId" element={<PaymentPage />} />
-        <Route path="/selected-courses" element={<SelectedCoursesPage />} />
-        <Route path="/enrolled-courses" element={<EnrolledCoursesPage />} />
-        <Route path="/instructor" element={<InstructorPage />} />
-        <Route path="/my-courses" element={<MyCoursesPage />} />
-        <Route path="/instructor-dashboard" element={<InstructorDashboard />} />
-        <Route path="/profile" element={<ProfilePage />} /> {/* Corrected element usage for ProfilePage */}
+        <Route
+          path="/login"
+          element={!user ? <LoginPage setUser={setUser} /> : <Navigate to="/dashboard" />}
+        />
+        <Route
+          path="/register"
+          element={!user ? <RegisterPage /> : <Navigate to="/dashboard" />}
+        />
 
-        {/* Admin-specific routes */}
-        {user?.role === 'admin' && (
-          <>
-            <Route path="/user-details" element={<UserDetailsPage />} />
-            <Route path="/approve-instructors" element={<ApproveOrDisapproveInstructors />} />
-            <Route path="/edit-user-details/:id" element={<EditUser />} />
-            <Route path="/delete-users" element={<DeleteUsersPage />} />
-            <Route path="/view-user/:id" element={<ViewAllUsersPage />} />
-            <Route path="/view-payment-history" element={<PaymentHistory />} />
-            <Route path="/edit-instructor-details/:id" element={<EditInstructor />} />
-            <Route path="/view-instructors" element={<AllInstructorsPage />} />
-          </>
-        )}
+        {/* Protected Routes */}
+        <Route
+          path="/dashboard"
+          element={<ProtectedRoute element={<DashboardPage user={user} />} />}
+        />
+        <Route
+          path="/payment/:courseId"
+          element={<ProtectedRoute element={<PaymentPage />} />}
+        />
+        <Route
+          path="/selected-courses"
+          element={<ProtectedRoute element={<SelectedCoursesPage />} />}
+        />
+        <Route
+          path="/enrolled-courses"
+          element={<ProtectedRoute element={<EnrolledCoursesPage />} />}
+        />
+        <Route
+          path="/profile"
+          element={<ProtectedRoute element={<ProfilePage />} />}
+        />
 
-        {/* Instructor-specific routes */}
-        {user?.role === 'instructor' && (
-          <>
-            <Route path="/add-course" element={<AddCoursePage />} />
-            <Route path="/update-course/:id" element={<UpdateCoursePage />} />
-          </>
-        )}
+        {/* Instructor Routes */}
+        <Route
+          path="/instructor"
+          element={<ProtectedRoute element={<InstructorPage />} roles={["instructor"]} />}
+        />
+        <Route
+          path="/my-courses"
+          element={<ProtectedRoute element={<MyCoursesPage />} roles={["instructor"]} />}
+        />
+        <Route
+          path="/add-course"
+          element={<ProtectedRoute element={<AddCoursePage />} roles={["instructor"]} />}
+        />
+        <Route
+          path="/update-course/:id"
+          element={<ProtectedRoute element={<UpdateCoursePage />} roles={["instructor"]} />}
+        />
+        <Route
+          path="/instructor-dashboard"
+          element={<ProtectedRoute element={<InstructorDashboard />} roles={["instructor"]} />}
+        />
+
+        {/* Admin Routes */}
+        <Route
+          path="/user-details"
+          element={<ProtectedRoute element={<UserDetailsPage />} roles={["admin"]} />}
+        />
+        <Route
+          path="/approve-instructors"
+          element={<ProtectedRoute element={<ApproveOrDisapproveInstructors />} roles={["admin"]} />}
+        />
+        <Route
+          path="/edit-user-details/:id"
+          element={<ProtectedRoute element={<EditUser />} roles={["admin"]} />}
+        />
+        <Route
+          path="/delete-users"
+          element={<ProtectedRoute element={<DeleteUsersPage />} roles={["admin"]} />}
+        />
+        <Route
+          path="/view-user/:id"
+          element={<ProtectedRoute element={<ViewAllUsersPage />} roles={["admin"]} />}
+        />
+        <Route
+          path="/view-payment-history"
+          element={<ProtectedRoute element={<PaymentHistory />} roles={["admin"]} />}
+        />
+        <Route
+          path="/edit-instructor-details/:id"
+          element={<ProtectedRoute element={<EditInstructor />} roles={["admin"]} />}
+        />
+        <Route
+          path="/view-instructors"
+          element={<ProtectedRoute element={<AllInstructorsPage />} roles={["admin"]} />}
+        />
+
+        {/* Fallback Route */}
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
   );

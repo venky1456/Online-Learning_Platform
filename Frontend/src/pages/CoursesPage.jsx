@@ -63,6 +63,12 @@ const CoursesPage = () => {
   };
 
   const handleEnroll = (courseId) => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) {
+      navigate('/login'); // Redirect to login page if not logged in
+      return;
+    }
+  
     setMessages(prevMessages => ({
       ...prevMessages,
       [courseId]: 'To enroll, please click on "Buy Now" button.'
@@ -70,6 +76,12 @@ const CoursesPage = () => {
   };
 
   const handleAddToCart = (course) => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) {
+      navigate('/login'); // Redirect to login page if not logged in
+      return;
+    }
+  
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     if (cart.some(item => item._id === course._id)) {
       setMessages(prevMessages => ({
@@ -87,6 +99,12 @@ const CoursesPage = () => {
   };
 
   const handleBuyNow = (courseId) => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) {
+      navigate('/login'); // Redirect to login page if not logged in
+      return;
+    }
+  
     navigate(`/payment/${courseId}`);
   };
 

@@ -1,25 +1,26 @@
-const User = require('../models/User');
+const User = require('../models/User'); // Ensure the User model is imported only once
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 // Register User
-
-
 exports.register = async (req, res) => {
   const { name, email, password, role } = req.body;
 
   try {
     // Check if user already exists
-    let user = await User.findOne({ email });
-    if (user) {
-      return res.status(400).json({ message: 'User already exists.' });
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: 'The user with this email already exists. Please log in or use a different email.' });
     }
 
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     // Create new user
-    user = new User({
+    const user = new User({
       name,
       email,
-      password: await bcrypt.hash(password, 10),
+      password: hashedPassword,
       role,
       isApproved: role === 'instructor' ? false : true, // Default to false for instructors, true for others
     });
@@ -28,20 +29,23 @@ exports.register = async (req, res) => {
     await user.save();
 
     // Provide different messages based on role
-    const message = role === 'instructor'
-      ? 'Instructor registered. Awaiting admin approval.'
-      : 'Registration successful';
+    let message;
+    if (role === 'instructor') {
+      message = 'Instructor registered successfully. Awaiting admin approval.';
+    } else if (role === 'student') {
+      message = 'Student registered successfully. You can now log in.';
+    } else {
+      message = 'Registration successful. You can now log in.';
+    }
 
     res.status(201).json({ message });
   } catch (error) {
     console.error('Error in register:', error.message);
-    res.status(500).json({ message: 'Server error.' });
+    res.status(500).json({ message: 'An unexpected server error occurred. Please try again later.' });
   }
 };
 
 // Login User
-
-
 exports.login = async (req, res) => {
   const { email, password } = req.body;
 
@@ -52,16 +56,11 @@ exports.login = async (req, res) => {
       return res.status(404).json({ message: 'User not found.' });
     }
 
-    if (user.role === 'instructor' && !user.isApproved) {
-      return res.status(403).json({ message: 'Instructor not approved by admin.' });
-    }
-
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: 'Invalid credentials.' });
     }
 
-    // Generate JWT token
     const token = jwt.sign({ userId: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
     res.status(200).json({
@@ -70,15 +69,14 @@ exports.login = async (req, res) => {
         id: user._id,
         email: user.email,
         name: user.name,
-        role: user.role
-      }
+        role: user.role,
+      },
     });
   } catch (error) {
     console.error('Error in login:', error.message);
     res.status(500).json({ message: 'Server error.' });
   }
 };
-
 
 // Get Current User
 exports.getUser = async (req, res) => {
@@ -112,5 +110,39 @@ exports.approveInstructor = async (req, res) => {
   } catch (error) {
     console.error('Error approving instructor:', error.message);
     res.status(500).json({ msg: 'Server Error' });
+  }
+};
+
+// Get User Profile
+// exports.getUserProfile = async (req, res) => {
+//   try {
+//     console.log("venky");
+//     const userId = req.user.id; // Ensure `req.user` is populated by the auth middleware
+//     const user = await User.findById(userId).select('name role email'); // Fetch only required fields
+//     console.log(userId, user); // Log the userId and user for debugging
+//     // )
+//     if (!user) {
+//       return res.status(404).json({ message: 'User not found' });
+//     }
+
+//     res.status(200).json(user);
+//   } catch (error) {
+//     console.error('Error in getUserProfile:', error.message);
+//     res.status(500).json({ message: 'Server error', error: error.message });
+//   }
+// };
+exports.getUserProfile = async (req, res) => {
+  try {
+    const userId = req.user.id; // Ensure `req.user` is populated by the auth middleware
+    const user = await User.findById(userId).select('name role email'); // Fetch only required fields
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.status(200).json(user); // Return user details as JSON
+  } catch (error) {
+    console.error('Error in getUserProfile:', error.message);
+    res.status(500).json({ message: 'Server error', error: error.message });
   }
 };
